@@ -1,10 +1,32 @@
 const express = require('express');
 
-
 const app = express();
 
-app.get('/',(req, res) => {
-    res.send('Alhamdulillah, I am succesfull to start my first node project');
+const users =['Kolmi','Sormi','Bormi','Molmi','Solmi','Hosmi']
+
+app.get('/',(req, res)=>{
+    res.send('You are starting your first node operation here')
 })
 
-app.listen(3000, () => console.log('listening from port 3000'));
+app.get('/flower',(req,res)=>{
+    const flower = {
+        name:'rose',
+        price:50
+    }
+    res.send(flower)
+})
+
+app.get('/flower/belly',(req,res)=>{
+    res.send({name:'Belly',quantity:3});
+})
+
+app.get('/users/:id',(req,res)=>{
+    const id = req.params.id;
+    const name = users[id]
+    res.send({id,name})
+    console.log(req.query.port);
+   
+})
+app.listen(3001, ()=> {
+    console.log("I am showing from port 3001");
+})
